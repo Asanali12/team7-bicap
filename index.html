@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Abay Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+    <div class="chat-container">
+        <aside class="sidebar">
+            <div id="chats-content" class="tab-content active">
+                <div class="content-header">
+                    <h2>Чаты</h2>
+                    <div class="header-actions">
+                        <button id="newChatBtn">+ Новый</button>
+                    </div>
+                </div>
+                <ul id="conversationsList" class="conversations-list"></ul>
+            </div>
+            <div id="quizzes-content" class="tab-content">
+                <div class="content-header">
+                    <h2>Викторины</h2>
+                </div>
+                <ul class="conversations-list"></ul>
+            </div>
+        </aside>
+
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <main class="main-chat">
+            <header class="chat-header">
+                <button id="hamburgerBtn" class="hamburger-btn" aria-label="Меню">☰</button>
+                <h1 class="chat-title">Абай Бот</h1>
+                <button id="settingsBtn" class="settings-btn" aria-label="Настройки">⚙️</button>
+            </header>
+
+            <div id="empty-state" class="empty-state">
+                <div class="empty-icon">💬</div>
+                <h2 class="empty-title">Что желаете спросить?</h2>
+                <p class="empty-subtitle">Спросите Абай-бота о жизни, мудрости и творчестве великого поэта</p>
+            </div>
+
+            <div id="messages" class="messages"></div>
+
+            <div id="suggestions-container" class="suggestions-container hidden"></div>
+
+            <div class="input-container">
+                <input id="inputText" type="text" placeholder="Спроси у Абая..." autocomplete="off" />
+                <button id="sendBtn" aria-label="Отправить">→</button>
+            </div>
+        </main>
+
+        <aside class="settings-panel">
+            <div class="settings-header">
+                <h2>Настройки</h2>
+                <button id="closeSettingsBtn" class="close-settings-btn" aria-label="Закрыть">×</button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label class="setting-label">Язык интерфейса</label>
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="ru">Русский</button>
+                        <button class="lang-btn" data-lang="kk">Қазақша</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label">Тема оформления</label>
+                    <div class="theme-switcher">
+                        <button class="theme-btn active" data-theme="light">☀️ Светлая</button>
+                        <button class="theme-btn" data-theme="dark">🌙 Темная</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div id="settings-overlay" class="settings-overlay"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat.js"></script>
+    <script>
+        window.I18N = {
+            ru: {
+                newChat: "Новый чат",
+                noChats: "Нет чатов. Создайте первый!",
+                settings: "Настройки",
+                language: "Язык",
+                theme: "Тема оформления",
+                light: "Светлая",
+                dark: "Темная",
+                inputPlaceholder: "Спроси у Абая...",
+                emptyTitle: "Что желаете спросить?",
+                emptySubtitle: "Спросите Абай-бота о жизни, мудрости и творчестве великого поэта"
+            },
+            kk: {
+                newChat: "Жаңа чат",
+                noChats: "Чат жоқ. Бірінші сін жасаңыз!",
+                settings: "Параметрлер",
+                language: "Тіл",
+                theme: "Тема",
+                light: "Жарық",
+                dark: "Қараңғы",
+                inputPlaceholder: "Абайдан сұраңыз...",
+                emptyTitle: "Не сұрағыңыз келеді?",
+                emptySubtitle: "Абай-боттан ұлы ақынның өмірі, даналығы және шығармашылығы туралы сұраңыз"
+            }
+        };
+    </script>
+</body>
+
+</html>
